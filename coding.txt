@@ -1,0 +1,35 @@
+// mengambil file koneksi.<?php 
+include "folder/koneksi.php";
+
+// untuk menampilkan table
+$query = "SELECT * FROM nama_table";
+$hasil = $koneksi->query($query);
+
+// properti untuk query mysqli
+$kode = $_POST['kode'];
+$nama = $_POST['nama'];
+$jenis = $_POST['jenis'];
+$jumlah = $_POST['jumlah'];
+
+// query untuk insert / tambah data kedatabase
+$query = "INSERT INTO nama_table VALUE ('$kode', '$nama', '$jenis', '$jumlah');
+$hasil = $koneksi->query($query);
+
+// query untuk update / edit data dari database
+$query = "UPDATE nama_table SET nama = '$nama', jenis = '$jenis', jumlah = '$jumlah' WHERE kode = '$kode';
+$hasil = $koneksi->query($query);
+
+// query untuk delete / hapus data dari database
+$query = "DELETE FROM nama_table WHERE kode = '$kode';
+$hasil = $koneksi->query($query);
+
+// cek apakah query berhasil
+if ($hasil) {
+    // success
+} else {
+    // failed
+}
+
+// redirect to http://localhost/dasar_web/
+header('location: http://localhost/dasar_web/');
+
