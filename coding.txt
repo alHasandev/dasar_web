@@ -1,3 +1,19 @@
+// properti koneksi 
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "nama_database";
+
+// membuat variable koneksi 
+$koneksi = new mysqli($host, $username, $password, $dbname);
+
+// cek apakah koneksi berhasil
+if ($koneksi->connect_error) {
+    die("Connection failed: " . $koneksi->connect_error);
+} else {
+    // berhasil
+}
+
 // mengambil file koneksi.<?php 
 include "folder/koneksi.php";
 
@@ -33,3 +49,10 @@ if ($hasil) {
 // redirect to http://localhost/dasar_web/
 header('location: http://localhost/dasar_web/');
 
+// file .htaccess
+Options -Multiviews
+
+RewriteEngine On 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [L]
